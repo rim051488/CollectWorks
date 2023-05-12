@@ -54,13 +54,11 @@ const InputCode& InputConfig::GetJoypadInputMove(void)
     return joypadInputMove_;
 }
 
-// ファイルがない場合はデフォルトのPAD設定を適用
 void InputConfig::SetDefalutPadCode(void)
 {
     auto type = GetJoypadType(DX_INPUT_PAD1);
     if (type == 3 || type == 4)
     {
-    	// PSコントローラーの場合
         if (!Load("padConfigPS.data", joypadInputCode_))
         {
             joypadInputCode_.emplace(InputID::Attack, 1);
@@ -73,7 +71,6 @@ void InputConfig::SetDefalutPadCode(void)
     }
     else
     {
-    	// Xboxコントローラーの場合
         if (!Load("padConfig.data", joypadInputCode_))
         {
             joypadInputCode_.emplace(InputID::Attack, 0);
@@ -86,7 +83,6 @@ void InputConfig::SetDefalutPadCode(void)
     }
 }
 
-// キーボードのファイルがない場合は呼ぶ
 void InputConfig::SetDefalutKeyCode(void)
 {
     keyInputCode_[InputID::Attack] = KEY_INPUT_Z;
@@ -97,7 +93,6 @@ void InputConfig::SetDefalutKeyCode(void)
     keyInputCode_[InputID::btn1] = KEY_INPUT_ESCAPE;
 }
 
-// キーの変更
 void InputConfig::SwapKeyInputCode(InputID id, int code)
 {
     int tmpCode{ keyInputCode_[id] };
@@ -110,7 +105,7 @@ void InputConfig::SwapKeyInputCode(InputID id, int code)
     }
     keyInputCode_[id] = code;
 }
-// PADのキーの変更
+
 void InputConfig::SwapPadInputCode(InputID id, int code)
 {
     int tmpCode{ joypadInputCode_[id] };
@@ -124,7 +119,6 @@ void InputConfig::SwapPadInputCode(InputID id, int code)
     joypadInputCode_[id] = code;
 }
 
-// コンフィグ用のプログラム
 InputConfig::InputConfig()
 {
     keyInputCode_.emplace(InputID::Up, KEY_INPUT_UP);

@@ -58,14 +58,21 @@ void SnareFloor::Update(float delta)
 
 void SnareFloor::UpdataAlerm(float delta)
 {
+	// squar_->Update(objMng_.GetPlayer().lock()->GetPos());
+	/*if (!flag_)
+	{
+		flag_ = squar_->flag_;
+	}*/
 	if (flag_ && sTime_ <= 4)
 	{
 		if (sTime_ == 0.0f)
 		{
 			AFlag_ = true;
+			// sPos_ = objMng_.GetPlayer().lock()->GetPos();
 		}
 		else
 		{
+			// sPos_ = (0.0f, 0.0f);
 			AFlag_ = false;
 		}
 		sTime_ += static_cast<float>(delta);
@@ -79,6 +86,8 @@ void SnareFloor::UpdataAlerm(float delta)
 
 void SnareFloor::UpdataSound(float delta)
 {
+	//squar_->Update(objMng_.GetPlayer().lock()->GetPos());
+	//AFlag_ = squar_->flag_;
 }
 
 void SnareFloor::Draw(const Math::Vector2& offset, DrawMng& drawMng)

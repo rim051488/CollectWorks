@@ -48,7 +48,31 @@ void Alert::Update(float delta)
 // Œ©‚Â‚¯‚Ä‚¢‚È‚¢‚Æ‚«‚Ìˆ—
 void Alert::UpdateNoDis(const Math::Vector2& pos, float delta)
 {
+	/*float Deg = Math::GetNormalizedAngle(fan_->GetAngle(), Math::Deg2Rad(0.0f), Math::Deg2Rad(360.0f));
+	float Rad = Math::Rad2Deg(Deg);
+	auto flag = fan_->UpdateHitRect(pos);*/
 	time_ += delta;
+
+	/*if (flag && rotFlag_ && rotTime_ <= -1.0f)
+	{
+		rotTime_ = 1.0f;
+		rotFlag_ = false;
+	}
+	else if (flag && !rotFlag_ && rotTime_ <= -1.0f)
+	{
+		rotTime_ = 1.0f;
+		rotFlag_ = true;
+	}
+	if (rotFlag_ && rotTime_ <= 0.0f)
+	{
+		fan_->AddAngle(0.003f);
+
+	}
+	if (!rotFlag_ && rotTime_ <= 0.0f)
+	{
+		fan_->AddAngle(-0.003f);
+
+	}*/
 
 	if (!stopFlag_)
 	{
@@ -70,6 +94,14 @@ void Alert::UpdateNoDis(const Math::Vector2& pos, float delta)
 		}
 	}
 
+	/*if (fan_->UpdateHitPos(pos))
+	{
+		sFlag_ = true;
+		if (!gmkEvent_.expired())
+		{
+			gmkEvent_.lock()->StartEvent(pos, EventType::Alert);
+		}
+	}*/
 }
 
 // Œ©‚Â‚¯‚½‚Ìˆ—
